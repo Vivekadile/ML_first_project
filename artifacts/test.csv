@@ -1,4 +1,4 @@
-id,gender,race_ethnicity,parental_level_of_education,lunch,test_preparation_course,math_score,reading_score,writing_score
+sr_no,gender,race_ethnicity,parental_level_of_education,lunch,test_preparation_course,math_score,reading_score,writing_score
 1,male,group B,bachelor's degree,standard,none,31,75,73
 2,female,group B,high school,free/reduced,none,95,69,84
 3,male,group E,some high school,standard,none,25,82,54

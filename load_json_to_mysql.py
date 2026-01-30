@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 
+# MySQL connection
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -10,19 +11,30 @@ conn = mysql.connector.connect(
 
 cursor = conn.cursor()
 
+# Load JSON file
 with open("/Users/apple/Downloads/student_performance_1000_rows.json", "r") as f:
     data = json.load(f)
 
+# Insert query (includes PRIMARY KEY sr_no)
 query = """
-INSERT INTO students
-(gender, race_ethnicity, parental_level_of_education,
- lunch, test_preparation_course,
- math_score, reading_score, writing_score)
-VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+INSERT INTO students (
+    sr_no,
+    gender,
+    race_ethnicity,
+    parental_level_of_education,
+    lunch,
+    test_preparation_course,
+    math_score,
+    reading_score,
+    writing_score
+)
+VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
 """
 
+# Insert data
 for row in data:
     cursor.execute(query, (
+        row["sr_no"],
         row["gender"],
         row["race_ethnicity"],
         row["parental_level_of_education"],
@@ -37,4 +49,4 @@ conn.commit()
 cursor.close()
 conn.close()
 
-print("✅ Data inserted successfully")
+print("✅ Data inserted successfully into students table")
