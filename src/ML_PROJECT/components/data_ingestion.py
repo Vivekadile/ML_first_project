@@ -23,7 +23,7 @@ class DataIngestion:
      def initiate_data_ingestion(self):
           try:
             ##reading the data 
-            df=read_sql_data()
+            df=pd.read_csv(os.path.join('notebook','data','data.csv'))
             logging.info("Reading completed from database")
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
             os.makedirs(os.path.dirname(self.ingestion_config.test_data_path), exist_ok=True)
@@ -36,6 +36,6 @@ class DataIngestion:
             return(
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
-            )
+                   )
           except Exception as e:
                raise CustomException(e, sys)
